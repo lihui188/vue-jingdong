@@ -4,8 +4,15 @@ import Vuex from "vuex";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: {},
-  mutations: {},
+  state: {
+    token: ''
+  },
+  mutations: {
+    setToken(state,token){
+      this.state.token = token;
+    }
+  },
   actions: {},
-  modules: {}
+  modules: {},
+  getters: {}
 });
