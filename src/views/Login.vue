@@ -81,6 +81,7 @@ export default {
           alert(result.message);
           this.$store.commit('setToken',result.token);
           localStorage.setItem('token',result.token);
+          this.$router.replace({path:'/tabbar/index'})
         } else {
           alert(result.message);
         }
