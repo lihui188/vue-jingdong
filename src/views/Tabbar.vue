@@ -44,8 +44,26 @@ export default {
     };
   },
   created() {
-    this.changeHandler();
+    // this.changeHandler("首页");
+    switch (this.$route.path) {
+      case "/tabbar/index":
+        this.selectedLabelDefault = "首页";
+        break;
+      case "/tabbar/list":
+        this.selectedLabelDefault = "分类";
+        break;
+      case "/tabbar/search":
+        this.selectedLabelDefault = "搜索";
+        break;
+      case "/tabbar/shopcar":
+        this.selectedLabelDefault = "购物车";
+        break;
+      case "/tabbar/mine":
+        this.selectedLabelDefault = "我的";
+        break;
+    }
   },
+
   methods: {
     clickHandler(label) {
       // if you clicked home tab, then print 'Home'
@@ -75,7 +93,7 @@ export default {
   }
 };
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
 .cube-tab-bar.tabbar {
   position: fixed;
   bottom: 0;

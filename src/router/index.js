@@ -4,7 +4,10 @@ import VueRouter from "vue-router";
 import Login from "../views/Login.vue";
 
 Vue.use(VueRouter);
-
+const VueRouterPush = VueRouter.prototype.push;
+VueRouter.prototype.push = function push(to) {
+  return VueRouterPush.call(this, to).catch(err => err);
+};
 const routes = [
   {
     path: "/",
@@ -46,11 +49,17 @@ const routes = [
       {
         path: "shopcar",
         name: "Shopcar",
+        meta: {
+          requireAuth: true //当有这个字段的时候，我们这个路由需要登录权限
+        },
         component: () => import("../views/tabbar/Shopcar.vue")
       },
       {
         path: "mine",
         name: "Mine",
+        meta: {
+          requireAuth: true //当有这个字段的时候，我们这个路由需要登录权限
+        },
         component: () => import("../views/tabbar/Mine.vue")
       }
     ]

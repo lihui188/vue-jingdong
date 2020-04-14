@@ -79,9 +79,16 @@ export default {
         });
         if (result.code == 0) {
           alert(result.message);
-          this.$store.commit('setToken',result.token);
-          localStorage.setItem('token',result.token);
-          this.$router.replace({path:'/tabbar/index'})
+          this.$store.commit("setToken", result.token);
+          localStorage.setItem("token", result.token);
+          // this.$router.replace({ path: "/tabbar/index" });
+          if (this.$route.query.redirect) {
+            this.$router.replace({ path: this.$route.query.redirect });
+          } else {
+            this.$router.replace({ path: "/tabbar/index" });
+            // console.log(this.$route);
+            // console.log(this.$router);
+          }
         } else {
           alert(result.message);
         }
