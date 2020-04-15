@@ -10,13 +10,16 @@
       @change="changeHandler"
       class="tabbar"
     ></cube-tab-bar>
+    <span class="countsum">{{ countsum }}</span>
   </div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   data() {
     return {
+      // countsum: "",
       transitionName: "slide-right",
       selectedLabelDefault: "首页",
       tabs: [
@@ -90,6 +93,11 @@ export default {
           break;
       }
     }
+  },
+  computed: {
+    ...mapGetters({
+      countsum: "countsum"
+    })
   }
 };
 </script>
@@ -125,5 +133,18 @@ export default {
   opacity: 0;
   -webkit-tranform: translate(100%, 0);
   transform: translate(100%, 0);
+}
+.countsum {
+  position: fixed;
+  bottom: 33px;
+  right: 23%;
+  z-index: 1001;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  border-radius: 50%;
+  font-size: 14px;
+  background: red;
+  color: #fff;
 }
 </style>
